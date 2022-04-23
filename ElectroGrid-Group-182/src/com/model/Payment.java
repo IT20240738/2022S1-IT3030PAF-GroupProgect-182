@@ -6,23 +6,7 @@ import java.sql.*;
 
 public class Payment {
 	
-	private Connection connect()
-	{
-		 Connection con = null;
-		 
-		 try
-		 {
-			 Class.forName("com.mysql.jdbc.Driver");
-
-			 //Provide the correct details: DBServer/DBName, username, password
-			 con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/electrogrid", "root", "hotel*123");
-		 }
-		 catch (Exception e)
-		 {e.printStackTrace();}
-		 
-		 return con;
-	}
-	
+	private static Connection con = null;
 	
 	//Insert Item
 	public String insertPaymentDetails(String customerID, String customerName, String paymentType, String cardNo, String amount, String date, String billNo)
@@ -31,7 +15,7 @@ public class Payment {
 		
 		try
 		{
-   		   Connection con = connect();
+			con = DBConnect.connect();
    		   
 		   if (con == null)
            {return "Error while connecting to the database for inserting."; }
@@ -72,7 +56,7 @@ public class Payment {
 		   String output = "";
 		   try
 		   {
-			 Connection con = connect();
+			   con = DBConnect.connect();
 			 if (con == null)
 			 {return "Error while connecting to the database for reading."; }
 			 
@@ -143,7 +127,7 @@ public class Payment {
 			
 			try
 			{
-				Connection con = connect();
+				con = DBConnect.connect();
 				
 				if (con == null)
 				{return "Error while connecting to the database for updating."; }

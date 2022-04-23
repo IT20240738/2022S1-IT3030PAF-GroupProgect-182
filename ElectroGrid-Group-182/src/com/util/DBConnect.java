@@ -7,7 +7,7 @@ public class DBConnect {
 	
 	//A common method to connect to the DB
 	
-		private Connection connect()
+		public static Connection connect()
 		{
 			 Connection con = null;
 			 
