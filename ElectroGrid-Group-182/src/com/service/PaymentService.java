@@ -1,5 +1,8 @@
 package com.service;
 
+import java.sql.SQLException;
+import java.util.ArrayList;
+
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.FormParam;
@@ -10,6 +13,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -40,6 +44,7 @@ public class PaymentService {
 		@Path("/")
 		@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 		@Produces(MediaType.TEXT_PLAIN)
+		
 		public String insertPayment(@FormParam("customerID") String customerID,
 		 @FormParam("customerName") String customerName,
 		 @FormParam("paymentType") String paymentType,
@@ -50,8 +55,10 @@ public class PaymentService {
 		
 	
 		{
-		 String output = paymentObj.insertPaymentDetails(customerID,customerName,paymentType,cardNo, amount,date,billNo);
-		return output;
+		   String output = paymentObj.insertPaymentDetails(customerID,customerName,paymentType,cardNo, amount,date,billNo);
+		 
+		   return output;
+		 
 		}
 		
 		//Update Details
@@ -98,6 +105,39 @@ public class PaymentService {
 		 
 		}
 		
+		
+		// view payment details
+		@GET
+		@Path("/customer/{paymentNo}")
+		@Consumes(MediaType.APPLICATION_JSON)
+		@Produces(MediaType.TEXT_PLAIN)
+		//@Produces(MediaType.TEXT_HTML)
+		public String readprofile(@PathParam("paymentNo") String paymentNo) {
+
+			return paymentObj.PaymentDetails(paymentNo);
+
+
+		}
+
+		// view payment history
+		@view
+		@Path("/history/{customerId}")
+		@Consumes(MediaType.APPLICATION_JSON)
+		@Produces(MediaType.TEXT_PLAIN)
+		//@Produces(MediaType.TEXT_HTML)
+		public String paymentHistory(@PathParam("customerID") String customerId) {
+
+			return paymentObj.PaymentHistory(customerId);
+
+
+		}
+
+		
+
+		
+		
+	
+
 
 }
 

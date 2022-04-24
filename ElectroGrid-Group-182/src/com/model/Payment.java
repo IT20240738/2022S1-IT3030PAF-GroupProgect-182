@@ -3,6 +3,7 @@ package com.model;
 import com.util.DBConnect;
 
 import java.sql.*;
+import java.util.ArrayList;
 
 public class Payment {
 	
@@ -54,6 +55,7 @@ public class Payment {
 		public String readPaymentDetails()
 	    {
 		   String output = "";
+		   
 		   try
 		   {
 			   con = DBConnect.connect();
@@ -165,7 +167,7 @@ public class Payment {
 		  }
 		
 
-		//Delete Item
+		//Delete Payment Details
 		public String deletePaymentDetails(String paymentNo)
 		{
 			String output = "";
@@ -200,7 +202,226 @@ public class Payment {
 			return output;
 			
 		 }
+		
+		
+//		// view profile details
+//		public String viewProfile(String paymentNo1) {
+//
+//
+//			String output = "";
+//
+//			try {
+//				con = DBConnect.connect();
+//
+//				if (con == null) {
+//					return "Error while connecting to the database for reading.";
+//				}
+//
+//				// Prepare the html table to be displayed
+//			     output = "<table border='1'><tr><th>Customer ID</th><th>Customer Name</th>" +
+//						   "<th>Payment Type</th>" +
+//						   "<th>Card No</th>" +
+//						   "<th>Payment Amount</th>" +
+//						   "<th>Payment Date</th>" +
+//						   "<th>Bill No</th>" +
+//						   "<th>Update</th><th>Remove</th></tr>";
+//			     
+//
+//				String query = "select *  from payment where paymentNo =' " + paymentNo1 + "'" ;
+//
+//
+//				Statement stmt = con.createStatement();
+//
+//
+//				ResultSet rs = stmt.executeQuery(query);
+//
+//				 
+//				 // iterate through the rows in the result set
+//				 while (rs.next())
+//				 {
+//					 String paymentNo = Integer.toString(rs.getInt("paymentNo"));
+//					 String customerID = rs.getString("customerID");
+//					 String customerName = rs.getString("customerName");
+//					 String paymentType = rs.getString("paymentType");
+//					 String cardNo = rs.getString("cardNo");
+//					 String paymentAmount = Double.toString(rs.getDouble("paymentAmount"));
+//					 String paymentDate = rs.getString("paymentDate");
+//					 String billNo = rs.getString("billNo");
+//					 
+//					 // Add into the html table
+//					 output += "<tr><td>" + customerID + "</td>";
+//					 output += "<td>" + customerName + "</td>";
+//					 output += "<td>" + paymentType + "</td>";
+//					 output += "<td>" + cardNo + "</td>";
+//					 output += "<td>" + paymentAmount + "</td>";
+//					 output += "<td>" + paymentDate + "</td>";
+//					 output += "<td>" + billNo + "</td>";
+//					 
+//					 // buttons
+//					 output += "<td><input name='btnUpdate' type='button' value='Update'class='btn btn-secondary'></td>"
+//								 + "<td><form method='post' action='payment.jsp'>"
+//								 + "<input name='btnRemove' type='submit' value='Remove'class='btn btn-danger'>"
+//								 + "<input name='itemID' type='hidden' value='" + paymentNo
+//								 + "'>" + "</form></td></tr>";
+//				 }
+//
+//				con.close();
+//
+//				output += "</table>";
+//
+//
+//			} catch (Exception e) 
+//			{
+//
+//				output = "Error while Viewing the user profile.";
+//				System.err.println(e.getMessage());
+//			}
+//
+//			return output;
+//		}
+//		
+//		
+		
+		public String PaymentDetails(String paymentNo1)
+	    {
+		   String output = "";
+		   
+		   try
+		   {
+			   con = DBConnect.connect();
+			 if (con == null)
+			 {return "Error while connecting to the database for reading."; }
+			 
+		     // Prepare the html table to be displayed
+		     output = "<table border='1'><tr><th>Customer ID</th><th>Customer Name</th>" +
+					   "<th>Payment Type</th>" +
+					   "<th>Card No</th>" +
+					   "<th>Payment Amount</th>" +
+					   "<th>Payment Date</th>" +
+					   "<th>Bill No</th>" +
+					   "<th>Update</th><th>Remove</th></tr>";
+		     
 
+		     String query = "select *  from payment where paymentNo =' " + paymentNo1 + "'" ;
+			 Statement stmt = con.createStatement();
+			 ResultSet rs = stmt.executeQuery(query);
+			 
+			 
+			 // iterate through the rows in the result set
+			 while (rs.next())
+			 {
+				 String paymentNo = Integer.toString(rs.getInt("paymentNo"));
+				 String customerID = rs.getString("customerID");
+				 String customerName = rs.getString("customerName");
+				 String paymentType = rs.getString("paymentType");
+				 String cardNo = rs.getString("cardNo");
+				 String paymentAmount = Double.toString(rs.getDouble("paymentAmount"));
+				 String paymentDate = rs.getString("paymentDate");
+				 String billNo = rs.getString("billNo");
+				 
+				 // Add into the html table
+				 output += "<tr><td>" + customerID + "</td>";
+				 output += "<td>" + customerName + "</td>";
+				 output += "<td>" + paymentType + "</td>";
+				 output += "<td>" + cardNo + "</td>";
+				 output += "<td>" + paymentAmount + "</td>";
+				 output += "<td>" + paymentDate + "</td>";
+				 output += "<td>" + billNo + "</td>";
+				 
+				 // buttons
+				 output += "<td><input name='btnUpdate' type='button' value='Update'class='btn btn-secondary'></td>"
+							 + "<td><form method='post' action='payment.jsp'>"
+							 + "<input name='btnRemove' type='submit' value='Remove'class='btn btn-danger'>"
+							 + "<input name='itemID' type='hidden' value='" + paymentNo
+							 + "'>" + "</form></td></tr>";
+			 }
+			 
+			 con.close();
+			 
+			 // Complete the html table
+			 output += "</table>";
+		   }
+		   catch (Exception e)
+		   {
+			 output = "Error while reading the items.";
+			 System.err.println(e.getMessage());
+		   }
+		   
+		   return output;
+	    }
+		
+
+		//Get payment history
+		public String PaymentHistory(String customerId)
+	    {
+		   String output = "";
+		   
+		   try
+		   {
+			   con = DBConnect.connect();
+			 if (con == null)
+			 {return "Error while connecting to the database for reading."; }
+			 
+		     // Prepare the html table to be displayed
+		     output = "<table border='1'><tr><th>Customer ID</th><th>Customer Name</th>" +
+					   "<th>Payment Type</th>" +
+					   "<th>Card No</th>" +
+					   "<th>Payment Amount</th>" +
+					   "<th>Payment Date</th>" +
+					   "<th>Bill No</th>" +
+					   "<th>Update</th><th>Remove</th></tr>";
+		     
+
+		     String query = "select *  from payment where customerID =' " + customerId + "'" ;
+			 Statement stmt = con.createStatement();
+			 ResultSet rs = stmt.executeQuery(query);
+			 
+			 
+			 // iterate through the rows in the result set
+			 while (rs.next())
+			 {
+				 String paymentNo = Integer.toString(rs.getInt("paymentNo"));
+				 String customerID = rs.getString("customerID");
+				 String customerName = rs.getString("customerName");
+				 String paymentType = rs.getString("paymentType");
+				 String cardNo = rs.getString("cardNo");
+				 String paymentAmount = Double.toString(rs.getDouble("paymentAmount"));
+				 String paymentDate = rs.getString("paymentDate");
+				 String billNo = rs.getString("billNo");
+				 
+				 // Add into the html table
+				 output += "<tr><td>" + customerID + "</td>";
+				 output += "<td>" + customerName + "</td>";
+				 output += "<td>" + paymentType + "</td>";
+				 output += "<td>" + cardNo + "</td>";
+				 output += "<td>" + paymentAmount + "</td>";
+				 output += "<td>" + paymentDate + "</td>";
+				 output += "<td>" + billNo + "</td>";
+				 
+				 // buttons
+				 output += "<td><input name='btnUpdate' type='button' value='Update'class='btn btn-secondary'></td>"
+							 + "<td><form method='post' action='payment.jsp'>"
+							 + "<input name='btnRemove' type='submit' value='Remove'class='btn btn-danger'>"
+							 + "<input name='itemID' type='hidden' value='" + paymentNo
+							 + "'>" + "</form></td></tr>";
+			 }
+			 
+			 con.close();
+			 
+			 // Complete the html table
+			 output += "</table>";
+		   }
+		   catch (Exception e)
+		   {
+			 output = "Error while reading the items.";
+			 System.err.println(e.getMessage());
+		   }
+		   
+		   return output;
+	    }
+		
+		
+		
 
 	
 }
