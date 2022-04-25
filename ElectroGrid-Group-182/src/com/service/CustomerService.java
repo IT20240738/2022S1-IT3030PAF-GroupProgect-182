@@ -3,6 +3,7 @@ package com.service;
 //For REST Service
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.PathParam;
 
 //For JSON
 import com.google.gson.*;
@@ -71,5 +72,23 @@ public class CustomerService
   String output = customerObj.deleteCustomer(customerID);
  return output;
  }
+ 
+//view profile details
+@GET
+@Path("/profile/{customerID}")
+@Consumes(MediaType.APPLICATION_JSON)
+@Produces(MediaType.TEXT_PLAIN)
+//@Produces(MediaType.TEXT_HTML)
+public String readprofile(@PathParam("customerID") String customerID) {
+
+
+
+return customerObj.viewProfile(customerID);
+
+
 }
 
+
+ 
+
+}
