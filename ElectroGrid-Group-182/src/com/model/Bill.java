@@ -14,13 +14,13 @@ public class Bill {
 	public String insertBill(String billCode,String cusId, String month, String units,String KWHCharge,
 			String fixedCharge,String rebate, String total)
 	{
+		
 	String output = "";
 
-	
 	try
 	{
-	con = DBConnect.connect();
-	if (con == null)
+		con = DBConnect.connect();
+		if (con == null)
 	{
 		return "Error while connecting to the database for inserting.";
 	}
@@ -34,7 +34,6 @@ public class Bill {
 	PreparedStatement preparedStmt = con.prepareStatement(query);
 	
 	// binding values
-	
 	preparedStmt.setInt(1, 0);
 	preparedStmt.setString(2,billCode);
 	preparedStmt.setInt(3,Integer.parseInt(cusId));
@@ -55,8 +54,8 @@ public class Bill {
 	
 	catch (Exception e)
 	{
-	output = "Error while inserting the bill.";
-	System.err.println(e.getMessage());
+		output = "Error while inserting the bill.";
+		System.err.println(e.getMessage());
 	}
 	
 	return output;
@@ -67,11 +66,11 @@ public class Bill {
 	public String readBill()
 	{
 		
-	String output = "";
+		String output = "";
 	
 	try
 	{
-	con = DBConnect.connect();
+		con = DBConnect.connect();
 	
 	if (con == null)
 	{
@@ -81,14 +80,14 @@ public class Bill {
 	
 	// Prepare the html table to be displayed
 	output = "<table border='1'><tr><th>Bill Code</th>" +
-			"<th>Customer Id</th>" +
-			"<th>Month</th>" +
-	"<th>Units</th>" +
-	"<th>KWH Charge</th>" +
-	"<th>Fixed Charge</th>" +
-	"<th>Rebate</th>" +
-	"<th>Total</th>" +
-	"<th>Update</th><th>Remove</th></tr>";
+			 "<th>Customer Id</th>" +
+			 "<th>Month</th>" +
+			 "<th>Units</th>" +
+			 "<th>KWH Charge</th>" +
+			 "<th>Fixed Charge</th>" +
+			 "<th>Rebate</th>" +
+			 "<th>Total</th>" +
+			 "<th>Update</th><th>Remove</th></tr>";
 	
 	String query = "select * from bill";
 	
@@ -99,15 +98,15 @@ public class Bill {
 	// iterate through the rows in the result set
 	while (rs.next())
 	{
-	String billId = Integer.toString(rs.getInt("billId"));
-	String billCode = rs.getString("billCode");
-	String customerId = Integer.toString(rs.getInt("customerID"));
-	String month = rs.getString("month");
-	String units = Integer.toString(rs.getInt("units"));
-	String KWHCharge=Double.toString(rs.getDouble("KWHCharge"));
-	String fixedCharge=Double.toString(rs.getDouble("fixedCharge"));
-	String rebate=Double.toString(rs.getDouble("rebate"));
-	String total =Double.toString(rs.getDouble("total")); 
+		String billId = Integer.toString(rs.getInt("billId"));
+		String billCode = rs.getString("billCode");
+		String customerId = Integer.toString(rs.getInt("customerID"));
+		String month = rs.getString("month");
+		String units = Integer.toString(rs.getInt("units"));
+		String KWHCharge=Double.toString(rs.getDouble("KWHCharge"));
+		String fixedCharge=Double.toString(rs.getDouble("fixedCharge"));
+		String rebate=Double.toString(rs.getDouble("rebate"));
+		String total =Double.toString(rs.getDouble("total")); 
 	
 	// Add into the html table
 	output += "<tr><td>" + billCode + "</td>";
@@ -130,12 +129,10 @@ public class Bill {
 	// Complete the html table
 	output += "</table>";
 	}
-	
-	catch (Exception e)
+		catch (Exception e)
 	{
-	output = "Error while reading the bill";
-	
-	System.err.println(e.getMessage());
+			output = "Error while reading the bill";
+			System.err.println(e.getMessage());
 	}
 	
 	return output;
@@ -191,74 +188,74 @@ public class Bill {
 	
 	
 	//delete bill
-		public String deleteBill(String billId)
-		{
+	public String deleteBill(String billId)
+	{
 			
-		String output = "";
+	String output = "";
 		
-		try
-		{
-			con = DBConnect.connect();
-		if (con == null)
+	try
+	{
+		con = DBConnect.connect();
+	if (con == null)
 			
-		{
-			return "Error while connecting to the database for deleting.";
+	{
+		return "Error while connecting to the database for deleting.";
 			
-		}
-		// create a prepared statement
-		String query = "delete from bill where billId=?";
+	}
+	// create a prepared statement
+	String query = "delete from bill where billId=?";
 		
-		PreparedStatement preparedStmt = con.prepareStatement(query);
+	PreparedStatement preparedStmt = con.prepareStatement(query);
 		
-		// binding values
-		preparedStmt.setInt(1, Integer.parseInt(billId));
+	// binding values
+	preparedStmt.setInt(1, Integer.parseInt(billId));
 		
-		// execute the statement
-		preparedStmt.execute();
+	// execute the statement
+	preparedStmt.execute();
 		
-		con.close();
+	con.close();
 		
-		output = "Bill Deleted successfully";
-		}
-		catch (Exception e)
-		{
+	output = "Bill Deleted successfully";
+	}
+	catch (Exception e)
+	{
 		output = "Error while deleting the bill.";
 		System.err.println(e.getMessage());
-		}
+	}
 		return output;
-		}
+	}
 	
 
-		//get particular  bill using billCode
-		public String getBill(String billCode)
-		{
+	//get particular  bill using billCode
+	public String getBill(String billCode)
+	{
 			
 		String output = "";
 		
-		try
-		{
+	try
+	{
 			
 			con = DBConnect.connect();
 		
-		if (con == null)
+	if (con == null)
 			
-		{
+	{
 			return "Error while connecting to the database for getting data.";
 			
-		}
-		// create a prepared statement
-		String query = "select * from bill where billCode=?";
+	}
+	// create a prepared statement
+	String query = "select * from bill where billCode=?";
 		
-		PreparedStatement preparedStmt = con.prepareStatement(query);
+	PreparedStatement preparedStmt = con.prepareStatement(query);
 		
-		// binding values
-		preparedStmt.setString(1, billCode);
+	// binding values
+	preparedStmt.setString(1, billCode);
 		
-		ResultSet rs = preparedStmt.executeQuery();
+	ResultSet rs = preparedStmt.executeQuery();
 		
-		// iterate through the rows in the result set
-		while (rs.next())
-		{
+	// iterate through the rows in the result set
+	while (rs.next())
+	{
 		String billID = Integer.toString(rs.getInt("billId"));
 		String billCODE = rs.getString("billCode");
 		String customerId = rs.getString("customerID");
@@ -278,16 +275,16 @@ public class Bill {
 		output += "<p>"+"Rebate:"+ rebate+"</p>";
 		output += "<p>"+"Total:"+total+"</p>";
 		
-		}
+	}
 		con.close();
-		}
+	}
 		catch (Exception e)
-		{
+	{
 		output = "Error while getting the bill.";
 		System.err.println(e.getMessage());
-		}
+	}
 		return output;
-		}
+	}
 	
 
 

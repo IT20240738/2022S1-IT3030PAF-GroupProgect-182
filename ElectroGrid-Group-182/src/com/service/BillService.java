@@ -21,40 +21,40 @@ import com.model.Bill;
 @Path("/bill")
 public class BillService {
 
-Bill billObj = new Bill();
+		Bill billObj = new Bill();
 	
-	//post API
-	@POST
-	@Path("/billAdd")
-	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-	@Produces(MediaType.TEXT_PLAIN)
-	public String insertItemBill(@FormParam("billCode") String billCode,
-			@FormParam("customerID") String customerId,
-	@FormParam("month") String month,
-	@FormParam("units") String units,
-	@FormParam("KWHCharge") String KWHCharge,
-	@FormParam("fixedCharge") String fixedCharge,
-	@FormParam("rebate") String rebate,
-	@FormParam("total") String total)
-	{
+		//post API
+		@POST
+		@Path("/billAdd")
+		@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+		@Produces(MediaType.TEXT_PLAIN)
+		public String insertItemBill(@FormParam("billCode") String billCode,
+		@FormParam("customerID") String customerId,
+		@FormParam("month") String month,
+		@FormParam("units") String units,
+		@FormParam("KWHCharge") String KWHCharge,
+		@FormParam("fixedCharge") String fixedCharge,
+		@FormParam("rebate") String rebate,
+		@FormParam("total") String total)
+		{
 		
-	String output = billObj.insertBill(billCode,customerId, month, units, KWHCharge,fixedCharge,rebate,total);
-	return output;
-	}
+		String output = billObj.insertBill(billCode,customerId, month, units, KWHCharge,fixedCharge,rebate,total);
+		return output;
+		}
 	
 	
-	//get API
-	@GET
-	@Path("/billAll")
-	@Produces(MediaType.TEXT_HTML)
-	public String readItemsBill()
-	{
-	return billObj.readBill();
+		//get API
+		@GET
+		@Path("/billAll")
+		@Produces(MediaType.TEXT_HTML)
+		public String readItemsBill()
+		{
+		return billObj.readBill();
 	
-	}
+		}
 	
 	
-	//put API
+		//put API
 		@PUT
 		@Path("/billUpdate")
 		@Consumes(MediaType.APPLICATION_JSON)
@@ -99,7 +99,7 @@ Bill billObj = new Bill();
 		return output;
 		}
 		
-		
+		//get API
 		@GET
 		@Path("/billView")
 		@Consumes(MediaType.APPLICATION_XML)
