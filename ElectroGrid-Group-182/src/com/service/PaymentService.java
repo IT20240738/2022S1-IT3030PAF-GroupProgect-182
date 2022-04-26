@@ -31,7 +31,7 @@ public class PaymentService {
 	
 	//Read All Payment Details
 		@GET
-		@Path("/")
+		@Path("/all")
 		@Produces(MediaType.TEXT_HTML) 
 		
 		public String readPayment()
@@ -42,7 +42,7 @@ public class PaymentService {
 		
 	//Add Payment Details
 		@POST
-		@Path("/")
+		@Path("/add")
 		@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 		@Produces(MediaType.TEXT_PLAIN)
 		
@@ -64,7 +64,7 @@ public class PaymentService {
 		
 		//Update Payment Details
 		@PUT
-		@Path("/")
+		@Path("/update")
 		@Consumes(MediaType.APPLICATION_JSON)
 		@Produces(MediaType.TEXT_PLAIN)
 		
@@ -91,7 +91,7 @@ public class PaymentService {
 		
 		//Delete Payment Details
 		@DELETE
-		@Path("/")
+		@Path("/delete")
 		@Consumes(MediaType.APPLICATION_XML)
 		@Produces(MediaType.TEXT_PLAIN)
 		
