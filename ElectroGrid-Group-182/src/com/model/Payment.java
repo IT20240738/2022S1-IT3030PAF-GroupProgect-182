@@ -3,7 +3,7 @@ package com.model;
 import com.util.DBConnect;
 
 import java.sql.*;
-import java.util.ArrayList;
+
 
 public class Payment {
 	
