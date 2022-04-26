@@ -97,7 +97,7 @@ Employee emp1 = new Employee();
 
 		// view profile details
 		@GET
-		@Path("/profile/{employeeNumber}")
+		@Path("/profile/{employeeNumber}") //set id to path to get one profile details
 		@Consumes(MediaType.APPLICATION_JSON)
 		@Produces(MediaType.TEXT_PLAIN)
 		//@Produces(MediaType.TEXT_HTML)

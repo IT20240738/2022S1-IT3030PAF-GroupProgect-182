@@ -52,7 +52,7 @@ public class Employee {
 			 output = "Error while inserting the item.";
 			 System.err.println(e.getMessage());
 		 }
-		    return output;
+		    return output;  //return out put
 	}
 	
 	
@@ -78,7 +78,7 @@ public class Employee {
 					   "<th>address</th>" +
 					   "<th>Update</th><th>Remove</th></tr>";
 		     
-
+           //query
 			 String query = "select * from employee";
 			 Statement stmt = con.createStatement();
 			 ResultSet rs = stmt.executeQuery(query);
@@ -127,7 +127,7 @@ public class Employee {
 			 System.err.println(e.getMessage());
 		   }
 		   
-		   return output;
+		   return output;  //return out put
 	    }
 		
 		//update
@@ -163,7 +163,7 @@ public class Employee {
 		 output = "Error while updating the item.";
 		 System.err.println(e.getMessage());
 		 }
-		 return output;
+		 return output; //return out put
 		 }
 		
 		
@@ -184,14 +184,14 @@ public class Employee {
 		 // execute the statement
 		 preparedStmt.execute();
 		 con.close();
-		 output = "Deleted successfully";
+		 output = "Deleted successfully"; //delete sucuess display this msg
 		 }
 		 catch (Exception e)
 		 {
-		 output = "Error while deleting the item.";
+		 output = "Error while deleting the item."; //delete error msg
 		 System.err.println(e.getMessage());
 		 }
-		 return output;
+		 return output; //return out put
 		 }
 		
 		
@@ -232,7 +232,7 @@ public class Employee {
 
 
 							ResultSet rs = stmt.executeQuery(query);
-
+                  
 							while (rs.next()) {
 								 String employeeNumber1 = Integer.toString(rs.getInt("employeeNumber"));//see
 								 String employeeName = rs.getString("employeeName");
@@ -245,7 +245,7 @@ public class Employee {
 								 String address = rs.getString("address");
 
 
-
+                         //output the table values
 								output += "<tr><td>" + employeeNumber1 + "</td>";
 								output += "<td>" + employeeName + "</td>";
 								output += "<td>" + employeeEmail1 + "</td>";
@@ -257,7 +257,7 @@ public class Employee {
 								output += "<td>" + address + "</td>";
 
 
-
+                     //out put button
 								 output += "<td><input name='btnUpdate' type='button' value='Update'class='btn btn-secondary'></td>"
 										 + "<td><form method='post' action=''>"
 										 + "<input name='btnRemove' type='submit' value='Remove'class='btn btn-danger'>"
@@ -278,7 +278,7 @@ public class Employee {
 							System.err.println(e.getMessage());
 						}
 
-						return output;
+						return output;   //return out put
 					}
 
 
