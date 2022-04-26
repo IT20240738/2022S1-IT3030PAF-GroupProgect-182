@@ -19,7 +19,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.model.Employee;
 
-@Path("/Employee")
+@Path("/Employee") //path
 public class EmployeeService {
 Employee empobj = new Employee();
 Employee emp1 = new Employee();
