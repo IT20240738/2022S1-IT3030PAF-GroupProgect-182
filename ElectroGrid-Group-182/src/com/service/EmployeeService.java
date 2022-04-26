@@ -91,13 +91,13 @@ Employee emp1 = new Employee();
 		//Read the value from the element <itemID>
 		 String employeeNumber = doc.select("employeeNumber").text();
 		 String output = empobj.deleteEmployee(employeeNumber);
-		return output;
+		return output;//output
 		}
 		
 
 		// view profile details
 		@GET
-		@Path("/profile/{employeeNumber}") //set id to path to get one profile details
+		@Path("/profile/{employeeNumber}") //set id to path to get one profile details 
 		@Consumes(MediaType.APPLICATION_JSON)
 		@Produces(MediaType.TEXT_PLAIN)
 		//@Produces(MediaType.TEXT_HTML)
