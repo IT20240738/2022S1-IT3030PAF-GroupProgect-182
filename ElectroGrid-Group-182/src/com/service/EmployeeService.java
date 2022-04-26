@@ -46,7 +46,7 @@ Employee emp1 = new Employee();
 		 @FormParam("phone") String phone,
 		 @FormParam("nic") String nic,
 		@FormParam("gender") String gender,
-         @FormParam("address") String address)
+         @FormParam("address") String address) 
 		 
 		
 	
@@ -54,9 +54,9 @@ Employee emp1 = new Employee();
 		 String output = empobj.insertEmployeeDetails(employeeName,
 				 employeeEmail,empAge,password, phone,nic, gender, address);
 		return output;
-		}
+		}//return output
 		
-		
+		//update
 		@PUT
 		@Path("/")
 		@Consumes(MediaType.APPLICATION_JSON)
