@@ -10,7 +10,7 @@ import com.util.DBConnect;
 public class Bill {
 	private static Connection con=null;
 
-	//insert  bill
+	//insert a bill
 	public String insertBill(String billCode,String cusId, String month, String units,String KWHCharge,
 			String fixedCharge,String rebate, String total)
 	{
@@ -62,7 +62,7 @@ public class Bill {
 	}
 	
 	
-	//read bills
+	//read all bills
 	public String readBill()
 	{
 		
@@ -139,7 +139,7 @@ public class Bill {
 	}
 	
 
-	//update bill
+	//update the bill
 	public String updateBill(String billId,String billCode, String customerId, String month, String units,String KWHCharge,
 			String fixedCharge,String rebate, String total)
 	{
@@ -187,7 +187,7 @@ public class Bill {
 		}
 	
 	
-	//delete bill
+	//delete the bill
 	public String deleteBill(String billId)
 	{
 			
@@ -226,7 +226,7 @@ public class Bill {
 	}
 	
 
-	//get particular  bill using billCode
+	//get a particular  bill using billCode
 	public String getBill(String billCode)
 	{
 			
