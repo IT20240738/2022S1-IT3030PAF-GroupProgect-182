@@ -21,6 +21,7 @@ import com.model.Bill;
 @Path("/bill")
 public class BillService {
 
+		//import the model
 		Bill billObj = new Bill();
 	
 		//post API
@@ -98,6 +99,7 @@ public class BillService {
 		String output = billObj.deleteBill(billID);
 		return output;
 		}
+		
 		
 		//get API
 		@GET
