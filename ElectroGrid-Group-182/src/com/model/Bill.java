@@ -47,11 +47,14 @@ public class Bill {
 	// execute the statement
 	preparedStmt.execute();  
 	
+	//close the connection
 	con.close();
 	
+	//output
 	output = "Bill Inserted successfully";
 	}
 	
+	//catch exception
 	catch (Exception e)
 	{
 		output = "Error while inserting the bill.";
@@ -89,6 +92,7 @@ public class Bill {
 			 "<th>Total</th>" +
 			 "<th>Update</th><th>Remove</th></tr>";
 	
+	//query
 	String query = "select * from bill";
 	
 	Statement stmt = con.createStatement();
@@ -124,9 +128,10 @@ public class Bill {
 	+ "</td></tr>";
 	}
 	
+	//close the connection
 	con.close();
 	
-	// Complete the html table
+	// output as html table
 	output += "</table>";
 	}
 		catch (Exception e)
@@ -172,11 +177,13 @@ public class Bill {
 		// execute the statement
 		preparedStmt.execute();
 		
+		//close connection
 		con.close();
 		
 		output = "Bill Updated successfully";
 		}
 		
+		//catch exceptions
 		catch (Exception e)
 		{
 		output = "Error while updating the bill.";
@@ -212,7 +219,8 @@ public class Bill {
 		
 	// execute the statement
 	preparedStmt.execute();
-		
+	
+	//close connection
 	con.close();
 		
 	output = "Bill Deleted successfully";
@@ -253,7 +261,7 @@ public class Bill {
 		
 	ResultSet rs = preparedStmt.executeQuery();
 		
-	// iterate through the rows in the result set
+	// get all the details for a particular billCode
 	while (rs.next())
 	{
 		String billID = Integer.toString(rs.getInt("billId"));
