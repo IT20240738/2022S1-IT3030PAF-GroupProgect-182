@@ -16,7 +16,7 @@ public class Employee {
 	public String insertEmployeeDetails(String employeeName, String employeeEmail, String empAge, String password, String phone, String nic, String gender, String address)
 	{
 		String output = "";
-		
+		//try close
 		try
 		{
 			con = DBConnect.connect();
