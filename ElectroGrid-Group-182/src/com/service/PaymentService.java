@@ -120,14 +120,14 @@ public class PaymentService {
 		}
 
 		// view payment history
-		@view
+		@GET
 		@Path("/history/{customerId}")
 		@Consumes(MediaType.APPLICATION_JSON)
 		@Produces(MediaType.TEXT_PLAIN)
 		//@Produces(MediaType.TEXT_HTML)
-		public String paymentHistory(@PathParam("customerID") String customerId) {
+		public String paymentHistory(@PathParam("customerID") String customerID) {
 
-			return paymentObj.PaymentHistory(customerId);
+			return paymentObj.PaymentHistory(customerID);
 
 
 		}

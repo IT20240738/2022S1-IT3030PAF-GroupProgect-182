@@ -9,7 +9,8 @@ public class Payment {
 	
 	private static Connection con = null;
 	
-	//Insert Item
+	
+	//Insert payment detail
 	public String insertPaymentDetails(String customerID, String customerName, String paymentType, String cardNo, String amount, String date, String billNo)
 	{
 		String output = "";
@@ -40,18 +41,18 @@ public class Payment {
 			// execute the statement
 			preparedStmt.execute();
 			con.close();
-			output = "Inserted successfully";
-		}
-		 catch (Exception e)
+			output = "Payment detail inserted successfully";
+			
+		}catch (Exception e)
 		 {
-			 output = "Error while inserting the item.";
+			 output = "Error while inserting the payment detail.";
 			 System.err.println(e.getMessage());
 		 }
 		    return output;
 	}
 	
 	
-	//Read Item
+	//Read payment list
 		public String readPaymentDetails()
 	    {
 		   String output = "";
@@ -113,7 +114,7 @@ public class Payment {
 		   }
 		   catch (Exception e)
 		   {
-			 output = "Error while reading the items.";
+			 output = "Error while reading the payment details.";
 			 System.err.println(e.getMessage());
 		   }
 		   
@@ -121,7 +122,7 @@ public class Payment {
 	    }
 		
 		
-		//Update Item
+		//Update payment details
 		
 		public String updatePaymentDetails(String paymentNo,String customerID, String customerName, String paymentType, String cardNo, String amount, String date, String billNo)
 		{
@@ -154,11 +155,11 @@ public class Payment {
 				 preparedStmt.execute();
 				 con.close();
 				 
-				 output = "Updated successfully";
+				 output = "Payment detail updated successfully";
 		   }
 		   catch (Exception e)
 		  {
-				 output = "Error while updating the item.";
+				 output = "Error while updating the payment details.";
 				 System.err.println(e.getMessage());
 		  }
 			
@@ -190,12 +191,12 @@ public class Payment {
 				 preparedStmt.execute();
 				 con.close();
 				 
-				 output = "Deleted successfully";
+				 output = "Payment details deleted successfully";
 			}
 			
 			catch (Exception e)
 			{
-				 output = "Error while deleting the item.";
+				 output = "Error while deleting the payment details.";
 				 System.err.println(e.getMessage());
 		    }
 			
@@ -204,83 +205,7 @@ public class Payment {
 		 }
 		
 		
-//		// view profile details
-//		public String viewProfile(String paymentNo1) {
-//
-//
-//			String output = "";
-//
-//			try {
-//				con = DBConnect.connect();
-//
-//				if (con == null) {
-//					return "Error while connecting to the database for reading.";
-//				}
-//
-//				// Prepare the html table to be displayed
-//			     output = "<table border='1'><tr><th>Customer ID</th><th>Customer Name</th>" +
-//						   "<th>Payment Type</th>" +
-//						   "<th>Card No</th>" +
-//						   "<th>Payment Amount</th>" +
-//						   "<th>Payment Date</th>" +
-//						   "<th>Bill No</th>" +
-//						   "<th>Update</th><th>Remove</th></tr>";
-//			     
-//
-//				String query = "select *  from payment where paymentNo =' " + paymentNo1 + "'" ;
-//
-//
-//				Statement stmt = con.createStatement();
-//
-//
-//				ResultSet rs = stmt.executeQuery(query);
-//
-//				 
-//				 // iterate through the rows in the result set
-//				 while (rs.next())
-//				 {
-//					 String paymentNo = Integer.toString(rs.getInt("paymentNo"));
-//					 String customerID = rs.getString("customerID");
-//					 String customerName = rs.getString("customerName");
-//					 String paymentType = rs.getString("paymentType");
-//					 String cardNo = rs.getString("cardNo");
-//					 String paymentAmount = Double.toString(rs.getDouble("paymentAmount"));
-//					 String paymentDate = rs.getString("paymentDate");
-//					 String billNo = rs.getString("billNo");
-//					 
-//					 // Add into the html table
-//					 output += "<tr><td>" + customerID + "</td>";
-//					 output += "<td>" + customerName + "</td>";
-//					 output += "<td>" + paymentType + "</td>";
-//					 output += "<td>" + cardNo + "</td>";
-//					 output += "<td>" + paymentAmount + "</td>";
-//					 output += "<td>" + paymentDate + "</td>";
-//					 output += "<td>" + billNo + "</td>";
-//					 
-//					 // buttons
-//					 output += "<td><input name='btnUpdate' type='button' value='Update'class='btn btn-secondary'></td>"
-//								 + "<td><form method='post' action='payment.jsp'>"
-//								 + "<input name='btnRemove' type='submit' value='Remove'class='btn btn-danger'>"
-//								 + "<input name='itemID' type='hidden' value='" + paymentNo
-//								 + "'>" + "</form></td></tr>";
-//				 }
-//
-//				con.close();
-//
-//				output += "</table>";
-//
-//
-//			} catch (Exception e) 
-//			{
-//
-//				output = "Error while Viewing the user profile.";
-//				System.err.println(e.getMessage());
-//			}
-//
-//			return output;
-//		}
-//		
-//		
+		//get payment detail using payment no
 		
 		public String PaymentDetails(String paymentNo1)
 	    {
@@ -343,7 +268,7 @@ public class Payment {
 		   }
 		   catch (Exception e)
 		   {
-			 output = "Error while reading the items.";
+			 output = "Error while reading the payment details.";
 			 System.err.println(e.getMessage());
 		   }
 		   
@@ -380,6 +305,7 @@ public class Payment {
 			 // iterate through the rows in the result set
 			 while (rs.next())
 			 {
+				 
 				 String paymentNo = Integer.toString(rs.getInt("paymentNo"));
 				 String customerID = rs.getString("customerID");
 				 String customerName = rs.getString("customerName");
@@ -413,7 +339,7 @@ public class Payment {
 		   }
 		   catch (Exception e)
 		   {
-			 output = "Error while reading the items.";
+			 output = "Error while reading the payment details.";
 			 System.err.println(e.getMessage());
 		   }
 		   
